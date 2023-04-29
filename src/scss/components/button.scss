@@ -1,0 +1,70 @@
+@use "abstracts" as *;
+@use "theme" as *;
+
+.btn {
+  all: unset;
+  box-sizing: border-box;
+
+  @include flex(center, center);
+  color: $colors-pure-white;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color $transitions-fast, color $transitions-fast;
+  border-style: solid;
+  border-width: $border-widths-thin;
+  border-color: transparent;
+  border-radius: $radii-md;
+}
+
+.btn-primary {
+  @extend .btn;
+
+  background-color: $colors-primary-default;
+
+  &:hover {
+    background-color: $colors-primary-light;
+  }
+
+  &.md {
+    padding-inline: $space-8;
+    height: to-rem(52px);
+    font-size: $font-sizes-md;
+    font-weight: $font-weights-semibold;
+    gap: $space-4;
+
+    img,
+    svg {
+      width: $space-6;
+      height: $space-6;
+    }
+  }
+
+  &.sm {
+    padding-inline: $space-4;
+    height: to-rem(40px);
+    font-size: $font-sizes-sm;
+    font-weight: $font-weights-medium;
+    gap: $space-2;
+
+    img,
+    svg {
+      width: $space-4;
+      height: $space-4;
+    }
+  }
+}
+
+.btn-outline {
+  @extend .btn;
+
+  font-size: $font-sizes-sm;
+  padding-inline: $space-4;
+  background-color: transparent;
+  height: to-rem(40px);
+  border-color: $colors-pure-white;
+
+  &:hover {
+    background-color: $colors-pure-white;
+    color: $colors-neutral-200;
+  }
+}

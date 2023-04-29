@@ -1,0 +1,198 @@
+@use "theme" as *;
+@use "abstracts" as *;
+
+header {
+  @include flex(center, center);
+  width: 100%;
+  height: $space-24;
+  border-bottom: $border-widths-medium solid
+    transparentize($colors-pure-white, 0.9);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  .container {
+    @include flex(center, space-between);
+  }
+
+  .logo-nav {
+    @include flex(center, space-between);
+    @include max-w(to-rem(638px));
+  }
+
+  .logo {
+    color: $colors-pure-white;
+    height: $space-10;
+    position: relative;
+
+    svg {
+      height: $space-10;
+    }
+
+    &::after {
+      content: "";
+      width: to-rem(43px);
+      border-top: $border-widths-thick solid $colors-primary-default;
+      position: absolute;
+      left: 0;
+      bottom: to-rem(-29px);
+    }
+  }
+
+  nav {
+    ul {
+      @include flex;
+      gap: $space-8;
+
+      li {
+        a {
+          @include flex(center, null);
+          gap: $space-3;
+          font-size: $font-sizes-sm;
+          transition: color $transitions-fast;
+
+          img,
+          svg {
+            width: to-rem(10px);
+            opacity: $opacity-medium;
+            color: $colors-pure-white;
+            transition: transform $transitions-fast;
+          }
+
+          &.active {
+            color: $colors-primary-default;
+
+            img,
+            svg {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .buttons {
+    @include flex(center, null);
+    gap: $space-4;
+  }
+}
+
+.menu {
+  width: 100%;
+  padding-top: $space-24;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  background: linear-gradient(
+    180deg,
+    #020203 0%,
+    rgba(14, 17, 23, 0.92) 96.35%,
+    rgba(14, 17, 23, 0.9) 100%
+  );
+  backdrop-filter: blur(6px);
+  transform: translateY(-100%);
+  @include visibility(hide);
+  transition: transform $transitions-fast;
+
+  .area-menu {
+    padding-block: $space-9 $space-14;
+
+    ul {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-gap: $space-8;
+
+      li {
+        a {
+          @include flex-col(center, center);
+          gap: $space-2;
+          height: $space-44;
+          border-radius: $radii-lg;
+
+          .logo {
+            @include flex(center, center);
+            @include size($space-18);
+
+            img {
+              width: 100%;
+            }
+          }
+
+          span {
+            @include max-w($space-28);
+            text-align: center;
+            font-size: $font-sizes-sm;
+            line-height: $line-heights-short;
+            color: transparentize($colors-pure-white, 0.4);
+            height: to-rem(33.59px);
+          }
+        }
+      }
+    }
+  }
+
+  .footer-menu {
+    @include flex(center, null);
+    height: $space-18;
+    background-color: transparentize($colors-neutral-300, 0.3);
+
+    .container {
+      @include flex(center, center);
+    }
+
+    ul {
+      @include flex(center, null);
+      gap: $space-16;
+
+      li {
+        a {
+          @include flex(center, null);
+          gap: $space-3;
+
+          span {
+            font-weight: $font-weights-semibold;
+          }
+
+          svg {
+            color: $colors-primary-light;
+          }
+        }
+      }
+    }
+  }
+
+  &.sports {
+    .area-menu {
+      ul {
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: $space-16;
+
+        li {
+          a {
+            height: $space-59;
+
+            .logo {
+              @include size($space-44, $space-37);
+            }
+          }
+
+          &:nth-child(2) {
+            a {
+              span {
+                max-width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.active {
+    @include visibility(show);
+    transform: translateY(0);
+  }
+}

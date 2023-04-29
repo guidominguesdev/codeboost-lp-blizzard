@@ -1,0 +1,25 @@
+@use "theme" as *;
+@use "abstracts" as *;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $fonts-default;
+  font-weight: $font-weights-bold;
+  line-height: $line-heights-shorter;
+}
+
+h1 {
+  font-size: to-rem(64px);
+}
+
+h2 {
+  font-size: to-rem(32px);
+}
+
+h3 {
+  font-size: to-rem(18px);
+}

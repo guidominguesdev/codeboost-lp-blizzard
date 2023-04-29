@@ -1,0 +1,576 @@
+@use 'theme' as *;
+@use 'abstracts' as *;
+
+.s-hero {
+  position: relative;
+
+  .slide-principal {
+    @include size(100%, to-rem(736px));
+
+    .swiper-wrapper {
+      .swiper-slide {
+        padding-top: calc($space-24 + $space-28);
+
+        .container {
+          @include flex(null, space-between);
+          position: relative;
+        }
+
+        &.slide-01 {
+          background: url('/dist/img/slide/01.jpg') no-repeat center center /
+            cover;
+        }
+
+        &.slide-02 {
+          background: url('/dist/img/slide/02.jpg') no-repeat center center /
+            cover;
+        }
+
+        &.slide-03 {
+          background: url('/dist/img/slide/03.jpg') no-repeat center center /
+            cover;
+        }
+
+        .hero-left {
+          @include max-w(to-rem(626px));
+          margin-left: calc($space-52 + to-rem(15px));
+
+          h2 {
+            font-size: to-rem(64px);
+            margin-bottom: $space-4;
+          }
+
+          p {
+            font-size: $font-sizes-lg;
+            margin-bottom: $space-8;
+          }
+        }
+
+        .hero-right {
+          @include max-w(to-rem(280px));
+          margin-top: -$space-8;
+
+          .logo {
+            @include flex(center, center);
+            @include size(100%, to-rem(180px));
+            margin-bottom: $space-22;
+          }
+
+          .video {
+            @include flex-col;
+            gap: $space-4;
+            width: 100%;
+
+            & > span {
+              width: 100%;
+              text-align: right;
+              text-transform: uppercase;
+              font-size: $font-sizes-sm;
+              font-weight: $font-weights-semibold;
+            }
+
+            .btn-video {
+              all: unset;
+
+              @include flex(center, center);
+              @include size(100%, to-rem(158px));
+              cursor: pointer;
+              border-radius: $radii-md;
+              overflow: hidden;
+              position: relative;
+
+              .thumb {
+                @include size(100%);
+                object-fit: cover;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transition: opacity $transitions-fast;
+
+                &.default {
+                  opacity: $opacity-default;
+                }
+
+                &.hover {
+                  opacity: 0;
+                }
+              }
+
+              .icon {
+                @include flex(center, center);
+                @include size(to-rem(50px));
+                pointer-events: none;
+                color: $colors-primary-default;
+                border-radius: $radii-full;
+                background: linear-gradient(
+                  136.72deg,
+                  rgba(7, 7, 10, 0.86) 19.22%,
+                  rgba(15, 16, 22, 0.5) 76.59%
+                );
+                backdrop-filter: blur(1.5px);
+                position: relative;
+                z-index: 2;
+                transition: all $transitions-fast, color $transitions-fast,
+                  outline-color $transitions-fast;
+                outline-width: 5px;
+                outline-style: solid;
+                outline-color: transparent;
+
+                svg {
+                  width: to-rem(15px);
+                  margin-right: -$space-1;
+                }
+              }
+
+              &:hover {
+                .thumb {
+                  &.default {
+                    opacity: 0;
+                  }
+
+                  &.hover {
+                    opacity: $opacity-default;
+                  }
+                }
+
+                .icon {
+                  outline-color: transparentize($colors-primary-default, 0.8);
+                  background: linear-gradient(
+                    162.58deg,
+                    rgba(0, 174, 255, 0.9) 11.94%,
+                    rgba(0, 174, 255, 0.45) 95.55%
+                  );
+                  color: $colors-neutral-100;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .slide-thumbnail {
+    height: to-rem(320px);
+    z-index: 2;
+
+    .swiper-wrapper {
+      .swiper-slide {
+        @include size(to-rem(48px));
+        cursor: pointer;
+        opacity: $opacity-medium;
+        filter: grayscale(100%);
+
+        &-thumb-active {
+          opacity: $opacity-default;
+          filter: grayscale(0%);
+        }
+
+        &.disabled {
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
+  .swiper-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    z-index: 3;
+
+    .slide-progress-bar {
+      @include size(auto, 3px);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      opacity: 0;
+      display: block;
+
+      &::after {
+        @include size(0, 100%);
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $colors-primary-default;
+        transform: width 0.1s linear;
+      }
+    }
+
+    &.active {
+      .slide-progress-bar {
+        opacity: 1;
+      }
+    }
+
+    &.animate {
+      .slide-progress-bar {
+        &::after {
+          width: 100%;
+          transition: width 5s linear;
+        }
+      }
+    }
+  }
+}
+
+.s-games {
+  padding-block: $space-18 $space-28;
+
+  .top {
+    @include flex(flex-end, space-between);
+    margin-bottom: $space-18;
+
+    .left {
+      @include flex(null, space-between);
+      @include max-w(to-rem(400px));
+
+      span {
+        display: block;
+        font-weight: $font-weights-semibold;
+        margin-top: $space-3;
+        opacity: $opacity-medium;
+      }
+
+      h2 {
+        @include max-w(to-rem(175px));
+        font-size: to-rem(32px);
+      }
+    }
+
+    ul {
+      @include flex;
+      gap: $space-6;
+
+      li {
+        a {
+          img,
+          svg {
+            transition: opacity $transitions-fast;
+            opacity: $opacity-medium;
+          }
+
+          &.active {
+            img,
+            svg {
+              opacity: $opacity-default;
+            }
+          }
+        }
+      }
+    }
+
+    .btn-all-games {
+      @include flex(center, null);
+      gap: $space-2;
+      color: $colors-primary-default;
+      font-weight: $font-weights-semibold;
+    }
+  }
+
+  .tab-games-content {
+    .tab-pane-games {
+      display: none;
+
+      &.active {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        column-gap: $space-8;
+        row-gap: $space-10;
+        animation: fadeUp 0.4s forwards;
+
+        & > .game-card {
+          max-width: 100%;
+        }
+      }
+
+      .card-all-games {
+        @include flex-col(center, center);
+        gap: $space-8;
+        width: 100%;
+        height: to-rem(384px);
+        border-radius: $radii-md;
+        border: 1px solid $colors-neutral-300;
+
+        .logo {
+          height: $space-10;
+        }
+
+        & > span {
+          @include flex(center, center);
+          gap: $space-3;
+          font-weight: $font-weights-semibold;
+
+          svg {
+            color: transparentize($colors-pure-white, 0.4);
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(to-rem(20px));
+    }
+
+    to {
+      opacity: $opacity-default;
+      transform: translateY(0);
+    }
+  }
+}
+
+.s-download {
+  height: to-rem(852px);
+  background: url('/dist/img/bg-section-download.jpg') no-repeat center center /
+    cover;
+  overflow: hidden;
+
+  .container {
+    position: relative;
+  }
+
+  .text-left {
+    @include flex-col(flex-start, null);
+    @include max-w(to-rem(416px));
+    padding-top: $space-32;
+
+    .logo {
+      width: auto;
+      height: $space-4;
+    }
+
+    h2 {
+      margin-block: $space-8;
+    }
+
+    ul {
+      @include flex-col;
+      gap: $space-6;
+      margin-bottom: $space-10;
+
+      li {
+        @include flex(center, null);
+        gap: $space-4;
+
+        .icon {
+          @include size(to-rem(18px));
+          @include flex(center, center);
+        }
+
+        p {
+          font-size: $font-sizes-lg;
+          color: transparentize($colors-pure-white, 0.6);
+        }
+      }
+    }
+
+    .app {
+      @include flex(center, null);
+      gap: $space-5;
+      margin-top: $space-12;
+      color: $colors-pure-white;
+
+      p {
+        @include flex-col;
+        font-size: $font-sizes-sm;
+        font-weight: $font-weights-semibold;
+
+        a {
+          text-decoration: underline;
+          transition: color $transitions-fast;
+
+          &:hover {
+            color: $colors-primary-light;
+          }
+        }
+      }
+    }
+  }
+
+  .image {
+    @include max-w(to-rem(1156px));
+    height: to-rem(852px);
+    position: absolute;
+    top: 0;
+    right: -$space-64;
+
+    img {
+      animation: float ease-in-out infinite;
+    }
+
+    .img-lg {
+      width: 100%;
+      height: auto;
+      animation-duration: 8s;
+    }
+
+    .img-sm {
+      animation-duration: 6s;
+      position: absolute;
+      right: $space-52;
+      bottom: $space-28;
+    }
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY($space-5);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+}
+
+.modal {
+  @include size(100%);
+  @include flex(center, center);
+  @include visibility(hide);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $z-indices-modal;
+  transition: opacity $transitions-fast;
+
+  .overlay {
+    @include size(100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    background-color: transparentize($colors-pure-black, 0.5);
+  }
+
+  .box {
+    @include max-w(to-rem(696px));
+    @include flex-col(center, center);
+    height: to-rem(600px);
+    position: relative;
+    z-index: 1;
+    border-radius: $radii-md;
+    overflow: hidden;
+    transform: translateY($space-12);
+    transition: transform $transitions-fast;
+    background: url('/dist/img/bg-modal.png') no-repeat top left
+      $colors-neutral-100;
+
+    .close {
+      all: unset;
+
+      position: absolute;
+      top: $space-6;
+      right: $space-6;
+      cursor: pointer;
+    }
+
+    .logo {
+      height: $space-5;
+      margin-bottom: $space-10;
+    }
+
+    form {
+      @include max-w(to-rem(426px));
+      margin-bottom: $space-10;
+
+      .inputs {
+        @include flex-col;
+        gap: $space-4;
+        margin-bottom: $space-6;
+      }
+
+      input[type='text'],
+      input[type='password'] {
+        width: 100%;
+        height: $space-12;
+        border-radius: $radii-md;
+        border: none;
+        padding-inline: $space-4;
+
+        &::placeholder {
+          opacity: $opacity-intense;
+        }
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+
+    .others-connect {
+      @include flex-col;
+      gap: $space-4;
+
+      p {
+        text-align: center;
+        font-size: $font-sizes-sm;
+        font-weight: $font-weights-medium;
+      }
+
+      ul {
+        @include flex;
+        gap: $space-4;
+        margin-bottom: $space-9;
+
+        li {
+          button {
+            all: unset;
+
+            @include flex(center, center);
+            @include size($space-12);
+            cursor: pointer;
+            background-color: $colors-pure-white;
+            border-radius: $radii-md;
+            color: $colors-pure-black;
+
+            & > svg,
+            img {
+              @include size($space-5);
+            }
+          }
+        }
+      }
+    }
+
+    .message-user {
+      @include flex-col(center, null);
+      gap: $space-4;
+
+      p {
+        text-align: center;
+        font-weight: $font-weights-medium;
+      }
+
+      a {
+        text-decoration: underline;
+        color: $colors-primary-default;
+        transition: color $transitions-fast;
+
+        &:hover {
+          color: $colors-primary-light;
+        }
+      }
+    }
+  }
+}
+
+.show-modal {
+  .modal {
+    @include visibility(show);
+
+    .box {
+      transform: translateY(0);
+    }
+  }
+}

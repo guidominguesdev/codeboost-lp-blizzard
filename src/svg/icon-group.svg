@@ -1,0 +1,12 @@
+<svg
+  width="9"
+  height="10"
+  viewBox="0 0 9 10"
+  fill="currentColor"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect y="0.5" width="3" height="3" />
+  <rect y="6.5" width="3" height="3" />
+  <rect x="6" y="0.5" width="3" height="3" />
+  <rect x="6" y="6.5" width="3" height="3" />
+</svg>

@@ -1,0 +1,75 @@
+@use "theme" as *;
+@use "abstracts" as *;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  @include responsive(2xl) {
+    font-size: 1.111vw;
+  }
+
+  @include responsive(lg) {
+    font-size: inherit;
+  }
+}
+
+html,
+body {
+  scroll-padding-top: var(--scroll-padding-top);
+
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $colors-neutral-100;
+}
+
+body,
+input,
+textarea,
+button {
+  font-size: $font-sizes-md;
+  font-family: $fonts-default;
+  line-height: $line-heights-base;
+  color: $colors-pure-white;
+  letter-spacing: $letter-spacings-md;
+}
+
+img,
+svg,
+picture,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+hr,
+iframe {
+  border: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
